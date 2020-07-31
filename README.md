@@ -25,11 +25,14 @@ Things you may want to cover:
 
 ##usersテーブル
 
-| Column   | Type   | Options    |
-| -------- | ------ | ---------- |
-| nickname | string | null:false |
-| email    | string | null:false |
-| password | string | null:false |
+| Column     | Type   | Options     |
+| ---------- | ------ | ----------- |
+| nickname   | string | null: false |
+| email      | string | null: false |
+| password   | string | null: false |
+| first_name | string | null: false |
+| last_name  | string | null: false |
+| birth_date | string | null: false |
 
 ###Association
 
@@ -42,7 +45,6 @@ Things you may want to cover:
 | ----------- | ------- | ---------- |
 | sold_or_not | boolean | null: true |
 | address     | string  | null: false |
-| user_id     | integer | null: true, foreign_key: true |
 
 ###Association
 
@@ -54,14 +56,14 @@ Things you may want to cover:
 | ------------------ | ---------- | ----------- |
 | image              | string     | null: false |
 | name               | string     | null: false |
-| text               | string     | null: false |
+| text               | test       | null: false |
 | price              | integer    | null: false |
 | user_id            | integer    | null:false, foreign_key: true |
-| category_id        | integer    | null: false, foreign_key: false |
-| item_status_id     | integer    | null: false, foreign_key: false |
-| delivery_burden_id | integer    | null: false, foreign_key: false |
-| sent_area_id       | integer    | null: false, foreign_key: false |
-| send_date_id       | integer    | null: false, foreign_key: false |
+| category_id        | integer    | null: false |
+| item_status_id     | integer    | null: false |
+| delivery_burden_id | integer    | null: false |
+| sent_area_id       | integer    | null: false |
+| send_date_id       | integer    | null: false |
 
 ###Association
 
