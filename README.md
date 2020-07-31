@@ -86,6 +86,7 @@ Things you may want to cover:
 
 - belongs_to :users
 - has_one :addresses
+- has_one :purchases
 - belongs_to_active_hash :category
 - belongs_to_active_hash :item_status (商品の状態)
 - belongs_to_active_hash :delivery_burden (配送料の負担)
