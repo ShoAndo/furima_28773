@@ -25,14 +25,16 @@ Things you may want to cover:
 
 ##usersテーブル
 
-| Column     | Type   | Options     |
-| ---------- | ------ | ----------- |
-| nickname   | string | null: false |
-| email      | string | null: false |
-| password   | string | null: false |
-| first_name | string | null: false |
-| last_name  | string | null: false |
-| birth_date | string | null: false |
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| nickname        | string | null: false |
+| email           | string | null: false |
+| password        | string | null: false |
+| first_name      | string | null: false |
+| last_name       | string | null: false |
+| kana_first_name | string | null: false |
+| kana_last_name  | string | null: false |
+| birth_date      | string | null: false |
 
 ###Association
 
@@ -44,12 +46,27 @@ Things you may want to cover:
 | Column      | Type    | Options    |
 | ----------- | ------- | ---------- |
 | sold_or_not | boolean | null: true |
-| address     | string  | null: false |
 
 ###Association
 
 - belongs_to :users
 - belongs_to :items
+- has_one    :addresses
+
+##addressesテーブル
+
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| post_number   | string  | null: false |
+| prefecture    | string  | null: false |
+| city          | string  | null: false |
+| address       | string  | null: false |
+| building      | string  | null: true  |
+| phone_number  | integer | null: false |
+
+###Association
+
+- belongs_to :purchases
 
 ##itemsテーブル
 | Column             | Type       | Options     |
