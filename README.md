@@ -34,7 +34,7 @@ Things you may want to cover:
 | last_name       | string | null: false |
 | kana_first_name | string | null: false |
 | kana_last_name  | string | null: false |
-| birth_date      | string | null: false |
+| birth_date      | date   | null: false |
 
 ###Association
 
@@ -45,13 +45,13 @@ Things you may want to cover:
 
 | Column      | Type    | Options    |
 | ----------- | ------- | ---------- |
-| sold_or_not | boolean | null: true |
+| user_id     | integer | null: true |
+| item_id     | integer | null: true |
 
 ###Association
 
 - belongs_to :users
 - belongs_to :items
-- has_one    :addresses
 
 ##addressesテーブル
 
@@ -61,12 +61,12 @@ Things you may want to cover:
 | prefecture    | string  | null: false |
 | city          | string  | null: false |
 | address       | string  | null: false |
-| building      | string  | null: true  |
-| phone_number  | integer | null: false |
+| building      | string  |             |
+| phone_number  | string  | null: false |
 
 ###Association
 
-- belongs_to :purchases
+- belongs_to :items
 
 ##itemsテーブル
 | Column             | Type       | Options     |
@@ -85,7 +85,7 @@ Things you may want to cover:
 ###Association
 
 - belongs_to :users
-- has_one :purchases
+- has_one :addresses
 - belongs_to_active_hash :category
 - belongs_to_active_hash :item_status (商品の状態)
 - belongs_to_active_hash :delivery_burden (配送料の負担)
