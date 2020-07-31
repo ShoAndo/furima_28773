@@ -50,8 +50,8 @@ Things you may want to cover:
 
 ###Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 ##addressesテーブル
 
@@ -63,10 +63,11 @@ Things you may want to cover:
 | address       | string  | null: false |
 | building      | string  |             |
 | phone_number  | string  | null: false |
+| item_id       | integer | null: false |
 
 ###Association
 
-- belongs_to :items
+- belongs_to :item
 
 ##itemsテーブル
 | Column             | Type       | Options     |
@@ -85,8 +86,8 @@ Things you may want to cover:
 ###Association
 
 - belongs_to :users
-- has_one :addresses
-- has_one :purchases
+- has_one :address
+- has_one :purchase
 - belongs_to_active_hash :category
 - belongs_to_active_hash :item_status (商品の状態)
 - belongs_to_active_hash :delivery_burden (配送料の負担)
