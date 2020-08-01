@@ -57,24 +57,18 @@ Things you may want to cover:
 
 | Column        | Type    | Options     |
 | ------------- | ------- | ----------- |
-| post_number_id   | integer  | null: false |
-| prefecture_id    | integer  | null: false |
-| city_id          | integer  | null: false |
-| address_id       | integer  | null: false |
-| building_id      | integer  |             |
-| phone_number_id  | integer  | null: false |
+| post_number   | string  | null: false |
+| prefecture_id | integer | null: false |
+| city          | string  | null: false |
+| address       | string  | null: false |
+| building      | string  |             |
+| phone_number  | string  | null: false |
 | item_id       | integer | null: false, foreign_key: true |
 
 ###Association
 
 - belongs_to :item
-- belongs_to_active_hash : post_number
 - belongs_to_active_hash : prefecture
-- belongs_to_active_hash : city
-- belongs_to_active_hash : address
-- belongs_to_active_hash : building
-- belongs_to_active_hash : phone_number
-
 
 
 ##itemsテーブル
