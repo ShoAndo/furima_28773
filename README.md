@@ -76,7 +76,7 @@ Things you may want to cover:
 | ------------------ | ---------- | ----------- |
 | image              | string     | null: false |
 | name               | string     | null: false |
-| text               | test       | null: false |
+| text               | text       | null: false |
 | price              | integer    | null: false |
 | user_id            | integer    | null:false, foreign_key: true |
 | category_id        | integer    | null: false |
