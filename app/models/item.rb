@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :sent_area
   belongs_to_active_hash :send_date
   has_one_attached :image
+  belongs_to :user
 
   with_options presence: true do
     validates :name, length: { maximum: 40 }
