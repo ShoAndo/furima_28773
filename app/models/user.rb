@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   zenkaku = '/\A[ぁ-んァ-ン一-龥]/'
   kana = '/\A[ァ-ヶー－]+\z/'
-  nick = '/\A[a-zぁ-んァ-ン一-龥]{,40}\z/i'
+  nick = '/\A[a-zぁ-んァ-ン一-龥\d]{,40}\z/i'
          
   with_options presence: true do
     validates :nickname, length: { maximum: 40 }, format: {with: nick, message: 'は40字以内で入力してください'}
