@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :find_item, only: :show
 
   def index
     @items = Item.all
@@ -21,7 +22,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @addresses = Address.all
     @purchases = Purchase.all
   end
@@ -32,6 +32,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :text, :price, :category_id, :item_status_id,
                                  :delivery_burden_id, :prefecture_id, :send_date_id).merge(user_id: current_user.id)
   end
+
+  def find_item
+    @item = Item.find(params[:id])
 
   def move_to_index
     unless user_signed_in?
