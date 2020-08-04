@@ -20,6 +20,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+    @addresses = Address.all
+    @purchases = Purchase.all
+  end
+
   private
 
   def item_params
