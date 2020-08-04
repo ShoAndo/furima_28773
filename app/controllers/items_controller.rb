@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to action: :show, id: @item.id
+      redirect_to action: :show
     else
       render :edit
     end
