@@ -8,14 +8,14 @@ class OrdersController < ApplicationController
 
   def create
     @user_pay = UserPay.new(order_params)
-   binding.pry
-   if @user_pay.valid?
-     pay_item
-     @user_pay.save
-     return redirect_to root_path
-   else
-     render :index
-   end
+   
+    if @user_pay.valid?
+      pay_item
+      @user_pay.save
+      return redirect_to root_path
+    else
+      render :index
+    end
   end
 
   private
