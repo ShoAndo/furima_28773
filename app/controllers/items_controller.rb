@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       redirect_to action: :index
     else
-      redirect_ro action: :show
+      redirect_to root_path
   end
 
   private
