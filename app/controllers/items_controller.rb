@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :find_item, only: :show
+  before_action :find_item, only: [:show, :destroy]
 
   def index
     @items = Item.all
@@ -26,6 +26,13 @@ class ItemsController < ApplicationController
     @purchases = Purchase.all
   end
 
+  def destroy
+    if @item.destroy
+      redirect_to action: :index
+    else
+      redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -35,6 +42,7 @@ class ItemsController < ApplicationController
 
   def find_item
     @item = Item.find(params[:id])
+  end
 
   def move_to_index
     unless user_signed_in?
