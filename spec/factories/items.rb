@@ -9,6 +9,5 @@ FactoryBot.define do
     prefecture_id { 14 }
     send_date_id { 3 }
     association :user
-
   end
 end
