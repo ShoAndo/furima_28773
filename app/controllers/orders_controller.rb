@@ -3,12 +3,21 @@ class OrdersController < ApplicationController
 
   def index
     authenticate_user!
+    
+    #出品者が直接購入ページに遷移してくるとトップページに飛ぶ
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+    #購入済みの商品の購入ページに直接遷移してくるとトップページに飛ぶ
+    if Purchase.where(user_id: current_user.id )
+      redirect_to root_path
+    end
     @user_pay = UserPay.new
   end
 
   def create
     @user_pay = UserPay.new(order_params)
-   
+    
     if @user_pay.valid?
       pay_item
       @user_pay.save
