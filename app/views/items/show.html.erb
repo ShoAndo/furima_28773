@@ -8,6 +8,7 @@
     </h2>
     <div class='item-img-content'>
       <%= image_tag @item.image ,class:"item-box-img" %>
+      <%# 購入されている場合、soldoutを表示 %>
       <% if @addresses.where(item_id: @item.id) && @purchases.where(item_id: @item.id) != [] %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
