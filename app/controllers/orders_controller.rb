@@ -6,11 +6,11 @@ class OrdersController < ApplicationController
     
     #出品者が直接購入ページに遷移してくるとトップページに飛ぶ
     if current_user.id == @item.user_id
-      redirect_to root_path
+      return redirect_to root_path
     end
     #購入済みの商品の購入ページに直接遷移してくるとトップページに飛ぶ
-    if Purchase.where(user_id: current_user.id )
-      redirect_to root_path
+    if Purchase.where(user_id: current_user.id ) != []
+      return redirect_to root_path
     end
     @user_pay = UserPay.new
   end

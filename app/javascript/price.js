@@ -3,7 +3,7 @@ function calc(){
   const add_tax_price = document.getElementById('add-tax-price')
   const profit = document.getElementById('profit')
 
-  input.addEventListener('input', (e) =>{
+  input.addEventListener( 'input', (e) =>{
     const input_price = document.getElementById('item_price').value;
     if (input_price == 0){
       add_tax_price.innerHTML = '半角数字のみ入力可能'
@@ -12,8 +12,8 @@ function calc(){
       add_tax_price.innerHTML = Math.floor(input_price * 0.1)
       profit.innerHTML = Math.floor(input_price * 0.9)
     }
-  })
-
+    e.preventDefault()
+  });
 }
 
-window.addEventListener('load', calc)
+setInterval(calc, 1000)
