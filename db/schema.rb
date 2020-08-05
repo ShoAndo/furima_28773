@@ -37,12 +37,12 @@ ActiveRecord::Schema.define(version: 2020_08_04_053203) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "post_number", null: false
+    t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
     t.string "phone_number", null: false
     t.integer "item_id", null: false
-    t.integer "prefecture_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -51,12 +51,12 @@ ActiveRecord::Schema.define(version: 2020_08_04_053203) do
     t.string "name", null: false
     t.text "text", null: false
     t.integer "price", null: false
+    t.integer "user_id", null: false
     t.integer "category_id", null: false
     t.integer "item_status_id", null: false
     t.integer "delivery_burden_id", null: false
     t.integer "prefecture_id", null: false
     t.integer "send_date_id", null: false
-    t.integer "user_id"
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
