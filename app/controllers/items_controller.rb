@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :find_item, only: [:show, :destroy, :edit, :update]
 
   def index
-    @items = Item.all
+    @items = Item.all.order("created_at DESC")
     @addresses = Address.all
     @purchases = Purchase.all
   end
