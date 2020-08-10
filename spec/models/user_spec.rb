@@ -39,78 +39,78 @@ RSpec.describe User, type: :model do
       it 'nicknameが空だと登録できない' do
         @user.nickname = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname can't be blank")
+        expect(@user.errors[:nickname]).to include(I18n.t('errors.messages.blank'))
       end
       it 'emailが空だと登録できない' do
         @user.email = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors[:email]).to include(I18n.t('errors.messages.blank'))
       end
       it 'emailが重複していると登録できない' do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
-        expect(another_user.errors.full_messages).to include('Email has already been taken')
+        expect(another_user.errors.full_messages.join).to include(I18n.t('errors.messages.taken'))
       end
       it 'passwordが空だと登録できない' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank")
+        expect(@user.errors.full_messages.join).to include(I18n.t('errors.messages.blank'))
       end
       it 'passeordが5文字以下だと登録できない' do
         @user.password = 'aaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+        expect(@user.errors.full_messages.join).to include(I18n.t('errors.messages.too_short', count: 6))
       end
       it 'passwordはあるが、password_confirmationが空だと登録できない' do
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages.join).to include(I18n.t('errors.messages.confirmation', attribute: 'Password'))
       end
       it '名字が空だと登録できない' do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name は全角で入力してください。')
+        expect(@user.errors.full_messages.join).to include(I18n.t('errors.messages.blank'))
       end
       it '名前が空だと登録できない' do
         @user.last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name は全角で入力してください。')
+        expect(@user.errors.full_messages.join).to include(I18n.t('errors.messages.blank'))
       end
       it '名字が全角意外だと登録できない' do
         @user.first_name = 'test'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name は全角で入力してください。')
+        expect(@user.errors.full_messages.join).to include('は全角で入力してください')
       end
       it '名前が全角漢字以外だと登録できない' do
         @user.last_name = 'test'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name は全角で入力してください。')
+        expect(@user.errors.full_messages.join).to include('は全角で入力してください。')
       end
       it '名字のフリガナが空だと登録できない' do
         @user.kana_first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('Kana first name は全角カタカナで入力して下さい。')
+        expect(@user.errors.full_messages.join).to include(I18n.t('errors.messages.blank'))
       end
       it '名前のフリガナが空だと登録できない' do
         @user.kana_last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include('Kana last name は全角カタカナで入力して下さい。')
+        expect(@user.errors.full_messages.join).to include(I18n.t('errors.messages.blank'))
       end
       it '名字のフリガナがカタカナ以外だと登録できない' do
         @user.kana_first_name = 'てすと'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Kana first name は全角カタカナで入力して下さい。')
+        expect(@user.errors.full_messages.join).to include('は全角カタカナで入力して下さい。')
       end
       it '名前のフリガナがカタカナ以外だと登録できない' do
         @user.kana_last_name = 'てすと'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Kana last name は全角カタカナで入力して下さい。')
+        expect(@user.errors.full_messages.join).to include('は全角カタカナで入力して下さい。')
       end
       it '生年月日が空だと登録できない' do
         @user.birth_date = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Birth date can't be blank")
+        expect(@user.errors[:birth_date]).to include(I18n.t('errors.messages.blank'))
       end
     end
   end

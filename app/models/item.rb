@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :text, length: { maximum: 1000 }
     validates :images, :category, :item_status, :delivery_burden, :prefecture, :send_date
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
-                                      message: 'is out of setting range' }
+                                      message: 'が可能な範囲を超えています' }
   end
   validates :category_id, :item_status_id, :delivery_burden_id, :prefecture_id, :send_date_id, numericality: { other_than: 1 }
 end

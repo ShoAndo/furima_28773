@@ -1,0 +1,26 @@
+ja:
+  errors:
+    messages:
+      blank: "can't be blank"
+  activerecord:
+    models:
+      user: ユーザー
+      item: アイテム
+    attributes:
+      user:
+        nickname: ニックネーム
+        first_name: 名字
+        last_name: 名前
+        kana_first_name: 名字のカナ
+        kana_last_name: 名前のカナ
+        birth_date: 生年月日
+      item:
+        name: 商品名
+        text: テキスト
+        images: 画像
+        price: 値段
+        category_id: カテゴリー
+        item_status_id: 商品の状態
+        delivery_burden_id: 配送料の負担
+        prefecture_id: 都道府県
+        send_date_id: 配送日
