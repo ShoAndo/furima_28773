@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
   before_action :move_to_index, :find_item
 
   def index
-    binding.pry
     authenticate_user!
     
     #出品者が直接購入ページに遷移してくるとトップページに飛ぶ
