@@ -68,8 +68,7 @@ gem 'image_processing', '~> 1.2'
 gem 'devise'
 gem 'payjp'
 group :production do
-  gem 'rails_12factor'
   gem 'unicorn', '5.4.1'
 end
 gem "aws-sdk-s3", require: false
-gem 'rails-i18n', '~> 6.0.0'
+gem 'rails-i18n'

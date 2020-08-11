@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :move_to_index, :find_item
 
   def index
+    binding.pry
     authenticate_user!
     
     #出品者が直接購入ページに遷移してくるとトップページに飛ぶ
@@ -17,13 +18,32 @@ class OrdersController < ApplicationController
 
   def create
     @user_pay = UserPay.new(order_params)
-    
-    if @user_pay.valid?
-      pay_item
-      @user_pay.save
-      return redirect_to root_path
+
+    if current_user.card.present?
+
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      customer_token = current_user.card.customer_token
+      Payjp::Charge.create(
+        amount: @item.price,
+        customer: customer_token,
+        currency: 'jpy' 
+        )
+
+        if @user_pay.valid?
+          @user_pay.save
+          return redirect_to root_path
+        else
+          render :index
+        end
     else
-      render :index
+
+      if @user_pay.valid?
+        pay_item
+        @user_pay.save
+        return redirect_to root_path
+      else
+        render :index
+      end
     end
   end
 

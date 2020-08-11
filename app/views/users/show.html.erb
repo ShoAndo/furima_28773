@@ -1,0 +1,76 @@
+<%= render "shared/second-header" %>
+
+<div class="AccountPage" style="margin: 0 auto;">
+  <div class="AccountPage__title">
+    <h1>マイページ</h1>
+  </div><br>
+  <div class="Card__title">
+    <h2>カード情報<h2>
+  </div>
+  <div class="Card_info">
+    【カード番号】
+    <br>
+    <%= "**** **** **** " + @card[:last4] %>
+    <%# カード番号の下4桁を取得 %>
+
+    <br>
+    【有効期限】
+    <br>
+    <%= @card[:exp_month] %>
+    <%# 有効期限の「月」を取得 %>
+    /
+    <%= @card[:exp_year] %>
+    <%# 有効期限の「年」を取得 %>
+  </div>
+  <div class="Account__info">
+    <h2>ユーザー情報</h2>
+  </div>
+  <div class="AccountPage__form">
+    <%= form_for(current_user) do |f| %>
+      <div class="FormField">
+        <div class="FormField__nickname">
+          <%= f.label :nickname %>
+        </div>
+        <div class="FormField__nickname">
+          <%= f.text_field :nickname, autofocus: true %>
+        </div>
+        <div class="FormField__name">
+          <%= f.label :first_name %>、<%= f.label :last_name %>
+        </div>
+        <div class="FormField__name">
+          <%= f.text_field :first_name, autofocus: true %>
+          <%= f.text_field :last_name, autofocus: true %>
+        </div>
+      </div>
+      <div class="FormField">
+        <div class="FormField__kana_name">
+          <%= f.label :kana_first_name %>、<%= f.label :kana_last_name %>
+        </div>
+        <div class="FormField__kana_name">
+          <%= f.text_field :kana_first_name, autofocus: true %>
+          <%= f.text_field :kana_last_name, autofocus: true %>
+        </div>
+      </div>
+      <div class="FormField">
+        <div class="FormField__email">
+          <%= f.label :email %>
+        </div>
+        <div class="FormField__email">
+          <%= f.email_field :email %>
+        </div>
+        <br>
+      </div><div class="FormField">
+        <div class="FormField__birth_date">
+          <%= f.label :email %>
+        </div>
+        <div class="FormField__birth_date">
+          <%= f.email_field :email %>
+        </div>
+        <br>
+      </div>
+      <%= f.submit "更新する" %>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/second-footer" %>
+
