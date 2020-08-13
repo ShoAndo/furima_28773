@@ -9,8 +9,11 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create]
     collection do
       get 'search'
+      get 'search_index'
+      get 'search_result'
     end
   end
+  
   resources :cards, only: [:new, :create]
   
 end

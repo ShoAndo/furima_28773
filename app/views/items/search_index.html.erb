@@ -1,0 +1,51 @@
+<%= render "shared/second-header" %>
+
+<h1>
+  商品検索
+</h1>
+<%= search_form_for @p, url: search_result_items_path do |f| %>
+    <%= f.label :name_eq, '商品名' %>
+    <%= f.collection_select :name_eq, @item_name, :name, :name,  include_blank: '指定なし' %>
+    <%= f.label :name_eq, 'カテゴリー' %>
+    <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし' %>
+    <%= f.label :name_eq, '商品の状態' %>
+    <%= f.collection_select :item_status_id, @item_item_status, :id, :name, include_blank: '指定なし' %>
+    <%= f.label :name_eq, '配送料の負担' %>
+    <%= f.collection_select :delivery_burden_id, @item_delivery_burden, :id, :name, include_blank: '指定なし' %>
+    <%= f.label :name_eq, '都道府県' %>
+    <%= f.collection_select :prefecture_id, @item_prefecture, :id, :name, include_blank: '指定なし' %>
+    <%= f.label :name_eq, '商品名' %>
+    <%= f.collection_select :send_date_id, @item_send_date, :id, :name, include_blank: '指定なし' %>
+    <br>
+    <%= f.label :price, '価格：' %>
+   <%= f.radio_button :price_lteq, '' %>
+   指定なし
+   <%= f.radio_button :price_lteq, '1000' %>
+   1000円以下
+   <%= f.radio_button :price_lteq, '2500' %>
+   2500円以下
+   <%= f.radio_button :price_lteq, '5000' %>
+   5000円以下
+   <%= f.radio_button :price_lteq, '50000' %>
+   50000円以下
+   <br>
+    <%= f.submit '検索' %>
+    <br>
+        <%# 商品一覧 %>
+    <% @items.each do |item| %>
+    <td>
+    <br>
+    <li>
+      <%= item.name %>
+      <%= image_tag item.images[0] %>
+      <%= item.price %>
+      <%= item.item_status.name %>
+      <%= item.category.name %>
+      <%= item.delivery_burden.name %>
+      <%= item.prefecture.name %>
+      <%= item.send_date.name %>
+    </li>
+    <% end %>
+<% end %>
+
+<%= render "shared/second-footer" %>

@@ -1,0 +1,28 @@
+<%= render "shared/second-header" %>
+
+<h1>
+ 検索結果
+</h1>
+<%# 検索結果の個数で条件分岐 %>
+<% if @results.length !=0 %>       
+ <% @results.each do |result| %>
+   <td>
+   <br>
+   <li>
+      <%= result.name %>
+      <%= image_tag result.images[0] %>
+      <%= result.price %>
+      <%= result.item_status.name %>
+      <%= result.category.name %>
+      <%= result.delivery_burden.name %>
+      <%= result.prefecture.name %>
+      <%= result.send_date.name %>
+   </li>
+ <% end %>
+<% else %>
+ 該当する商品はありません
+<% end %>
+ <br>
+<%= link_to 'トップページへ戻る', root_path %>
+
+<%= render "shared/second-footer" %>

@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search_index, :search_result]
   before_action :find_item, only: [:show, :destroy, :edit, :update]
+  before_action :search_product, only: [:search_index, :search_result]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -59,6 +60,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search_index
+    @items = Item.all
+    set_item_column
+  end
+
+  def search_result
+    @results = @p.result
+  end
+
   private
 
   def item_params
@@ -78,5 +88,18 @@ class ItemsController < ApplicationController
     unless user_signed_in?
       redirect_to action: :index
     end
+  end
+
+  def search_product
+    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+  end
+
+  def set_item_column
+    @item_name = Item.select('name').distinct
+    @item_category = Category.all
+    @item_item_status = ItemStatus.all
+    @item_delivery_burden = DeliveryBurden.all
+    @item_prefecture = Prefecture.all
+    @item_send_date = SendDate.all
   end
 end
