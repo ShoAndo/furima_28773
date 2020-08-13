@@ -5,7 +5,7 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with  model: @item, local: true do |f| %>
+    <%= form_with model: @item, local: true do |f| %>
 
     <%= render 'shared/error_messages', model: f.object %>
 
@@ -22,8 +22,10 @@
         <%= f.file_field :images, name: 'item[images][]', id: 'item_image' %>
         <br>
         <div id="image-list">
-          <% @item.images.each do |image| %>
-            <%= image_tag image, class: 'images' %>
+          <% if @item.images != nil %>
+            <% @item.images.each do |image| %>
+              <%= image_tag image, class: 'images' %>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -120,6 +122,17 @@
       </div>
     </div>
     <%# /販売価格 %>
+    <%# タグ %>
+    <%= f.fields_for @tag do |f| %>
+      <div class="new-tags">
+        <div class="weight-bold-text">
+          タグ
+        </div>
+        <%= f.text_field :tag_name, class:"items-tag", id:"items_tag_name", placeholder:"タグ付けする場合は入力してください"%>
+        <div id="search-result">
+        </div>
+      </div>
+    <% end %>
 
     <%# 注意書き %>
     <div class="caution">

@@ -9,6 +9,8 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :address
   has_one :purchase
+  has_many :items_tags
+  has_many :tags, through: :items_tags
 
   with_options presence: true do
     validates :name, length: { maximum: 40 }
@@ -18,4 +20,5 @@ class Item < ApplicationRecord
                                       message: 'が可能な範囲を超えています' }
   end
   validates :category_id, :item_status_id, :delivery_burden_id, :prefecture_id, :send_date_id, numericality: { other_than: 1 }
+  
 end
