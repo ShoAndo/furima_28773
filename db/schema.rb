@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_155102) do
+ActiveRecord::Schema.define(version: 2020_08_13_074758) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -90,6 +90,15 @@ ActiveRecord::Schema.define(version: 2020_08_12_155102) do
     t.integer "item_id"
   end
 
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -118,4 +127,5 @@ ActiveRecord::Schema.define(version: 2020_08_12_155102) do
   add_foreign_key "cards", "users"
   add_foreign_key "items_tags", "items"
   add_foreign_key "items_tags", "tags"
+  add_foreign_key "sns_credentials", "users"
 end
