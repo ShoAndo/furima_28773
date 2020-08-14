@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :purchases
   has_one :card, dependent: :destroy
   has_many :sns_credentials
+  has_many :user_rooms
+  has_many :rooms, through: :user_rooms
+
 
   zenkaku = /\A[ぁ-んァ-ン一-龥]/
   kana = /\A[ァ-ヶー－]+\z/

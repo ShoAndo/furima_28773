@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'messages/index'
   get 'users/show'
   get 'cards/new'
   devise_for :users, controllers: {
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   root "items#index"
   resources :items do
     resources :orders, only: [:index, :create]
+    resources :messages, only: :index
     collection do
       get 'search'
       get 'search_index'
