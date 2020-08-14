@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "items#index"
   resources :items do
+    resources :rooms, only: [:new, :create] do
+      resources :messages, only: :index
+    end
     resources :orders, only: [:index, :create]
-    resources :messages, only: :index
     collection do
       get 'search'
       get 'search_index'
