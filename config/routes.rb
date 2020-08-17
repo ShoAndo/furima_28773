@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'messages/index'
   get 'users/show'
   get 'cards/new'
   devise_for :users, controllers: {
@@ -9,6 +10,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "items#index"
   resources :items do
+    resources :rooms, only: [:index, :new, :create, :destroy] do
+      resources :messages, only: [:index, :create]
+    end
     resources :orders, only: [:index, :create]
     collection do
       get 'search'
