@@ -1,5 +1,8 @@
 class RoomsController < ApplicationController
-  before_action :find_item, only: [:new, :create]
+  before_action :find_item, only: [:new, :create, :destroy]
+
+  def index
+  end
 
   def new
     @room = Room.new
@@ -7,12 +10,17 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
-    binding.pry
     if @room.save
       redirect_to item_room_messages_path(item_id: @item.id, room_id: @room.id)
     else
       render :new
     end
+  end
+
+  def destroy
+    room = Room.find(params[:id])
+    room.destroy
+    redirect_to item_rooms_path(@item.id)
   end
 
   private

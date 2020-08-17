@@ -12,6 +12,7 @@ class Item < ApplicationRecord
   has_many :items_tags
   has_many :tags, through: :items_tags
   has_one :room
+  has_many :messages
 
   with_options presence: true do
     validates :name, length: { maximum: 40 }
