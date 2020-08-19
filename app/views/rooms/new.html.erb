@@ -16,7 +16,7 @@
         <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
       </div>
       <div class='chat-room-form__field--right'>
-        <select name="room[user_ids][]">
+        <select name="room[user_ids][]" class="select-member">
           <option value="<%= @item.user.id %>"><%= @item.user.nickname %></option>
         </select>
         <input name="room[user_ids][]" type="hidden" value=<%=current_user.id%>>
