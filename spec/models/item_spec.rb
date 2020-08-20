@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    @item.images = [fixture_file_upload('public/images/indigolaend.jpg')]
+    
   end
   describe '新規出品' do
     context '出品できるとき' do
